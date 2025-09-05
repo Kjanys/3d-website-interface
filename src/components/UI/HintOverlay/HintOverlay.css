@@ -1,0 +1,49 @@
+.hint-overlay {
+  position: fixed;
+  bottom: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 32px;
+  background: rgba(28, 28, 32, 0.92);
+  color: #fff;
+  font-size: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,0.20);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1000;
+  font-family: "Inter", "Segoe UI", "Roboto", Arial, sans-serif;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  border: 1.5px solid rgba(255, 215, 64, 0.38);
+  backdrop-filter: blur(2px);
+}
+
+.hint-key {
+  min-width: 42px;
+  height: 38px;
+  background: linear-gradient(90deg, #ffd740 0%, #ffc85a 100%);
+  color: #222;
+  font-size: 24px;
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', monospace;
+  font-weight: 700;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 5px 0 rgba(255, 215, 64, 0.13);
+  border: 2px solid #d4a700;
+  margin-right: 8px;
+  letter-spacing: 0.03em;
+}
+
+.hint-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
+}

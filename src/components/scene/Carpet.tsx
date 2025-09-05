@@ -1,21 +1,21 @@
 import React from "react";
-import InteractiveItem from "./InteractiveItem";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three";
+import carpetTexture from "../../assets/textures/сarpet/kovrik-v-vostochnom-stile-oboi-7.png";
 
-type CarpetProps = {
-  onInteract?: (name: string) => void;
-};
+const Carpet: React.FC = () => {
+  const colorMap = useLoader(TextureLoader, carpetTexture);
 
-const Carpet: React.FC<CarpetProps> = ({ onInteract }) => (
-  <InteractiveItem
-    position={[-3.5, 1.45, -3.225]}
-    rotation={[-Math.PI / 2.05, 0, 0]}
-    onInteract={() => onInteract?.("carpet")}
-  >
-    <mesh>
-      <planeGeometry args={[2, 1.1]} />
-      <meshStandardMaterial color="#822e26" />
+  return (
+    <mesh
+      position={[0, 0.15, 0]}
+      rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+      receiveShadow
+    >
+      <planeGeometry args={[3.5, 2.5]} />
+      <meshStandardMaterial map={colorMap} transparent={true} alphaTest={0.5} />
     </mesh>
-  </InteractiveItem>
-);
+  );
+};
 
 export default Carpet;

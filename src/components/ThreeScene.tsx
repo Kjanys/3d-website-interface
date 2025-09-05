@@ -15,9 +15,16 @@ import TV from "./scene/TV";
 import Table from "./scene/Table";
 import Window from "./scene/Window";
 import "./ThreeScene.css";
+import Chandelier from "./scene/Chandelier";
+import Battery from "./scene/Battery";
+import Armchair from "./scene/Armchair";
+import FicusPlant from "./scene/FicusPlant";
+import WallCarpet from "./scene/WallCarpet";
+import HintOverlay from "./UI/HintOverlay/HintOverlay";
 
 const ThreeScene: React.FC = () => {
   const [mode, setMode] = useState<AppMode>(AppMode.MainMenu);
+  const [showHint, setShowHint] = useState<string | null>(null);
   const canvasWrapperRef = useRef<HTMLDivElement>(null);
 
   const handleStart = () => setMode(AppMode.Playing);
@@ -27,19 +34,28 @@ const ThreeScene: React.FC = () => {
   return (
     <>
       <div ref={canvasWrapperRef} id="canvas-wrapper">
-        <Canvas camera={{ position: [0, 1.2, 7], fov: 60 }} shadows>
+        <Canvas camera={{ position: [0, 1.2, 7], fov: 70 }} shadows>
           <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 8, 5]} intensity={1.1} castShadow />
+          <directionalLight
+            position={[-0.3, 3.1, 0]}
+            intensity={0.8}
+            castShadow
+          />
           <Suspense fallback={null}>
             <Room />
-            <Sofa />
+            <Sofa onShowHint={setShowHint} />
             <Carpet />
-            <Cabinet />
-            <TV />
+            <Cabinet onShowHint={setShowHint} />
+            <TV onShowHint={setShowHint} />
             <Table />
-            <Posters />
+            <Posters onShowHint={setShowHint} />
             <Door />
             <Window />
+            <Chandelier />
+            <Battery />
+            <Armchair onShowHint={setShowHint} />
+            <FicusPlant onShowHint={setShowHint} />
+            <WallCarpet />
           </Suspense>
           <PointerLockControls
             pointerSpeed={0.3}
@@ -57,13 +73,16 @@ const ThreeScene: React.FC = () => {
         </Canvas>
       </div>
 
+      {showHint !== null && mode === AppMode.Playing && (
+        <HintOverlay text="E Взаимодействовать" />
+      )}
+
       <MainMenu
         mode={mode}
         onStart={handleStart}
         onResume={handleResume}
         visible={mode !== AppMode.Playing}
       />
-
       {mode === AppMode.Playing && <Crosshair />}
     </>
   );
