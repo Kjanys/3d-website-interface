@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import InteractiveItem from "./InteractiveItem";
 
@@ -136,9 +137,9 @@ const FicusPlant: React.FC<FicusPlantProps> = ({ onInteract, onShowHint }) => (
         receiveShadow
         castShadow
         key={i}
-        position={leaf.pos}
-        rotation={leaf.rot}
-        scale={leaf.scl}
+        position={leaf.pos as any}
+        rotation={leaf.rot as any}
+        scale={leaf.scl as any}
       >
         <sphereGeometry args={[1, 10, 7, 0, Math.PI * 2, 0, Math.PI / 2]} />
         <meshStandardMaterial color={LEAF_COLORS[i % LEAF_COLORS.length]} />
